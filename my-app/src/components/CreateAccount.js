@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { axiosWithAuth } from './axiosWithAuth';
 import Students from './Student';
 import Volunteers from './Volunteer';
@@ -29,7 +29,7 @@ export default function CreateAccount (props) {
 				setNewUser(res.data)
 			})
 			.catch((err) => {
-				debugger;
+				console.log(err);
             })
             .finally(() => {
                 setFormValues(initialFormValues);
@@ -47,7 +47,7 @@ export default function CreateAccount (props) {
 			    setNewUser(res.data)
 			})
 			.catch((err) => {
-				debugger;
+				console.log(err);
             })
             .finally(() => {
                 setFormValues(initialFormValues);
@@ -109,9 +109,10 @@ export default function CreateAccount (props) {
               <label>Volunteer
               <input type="radio" value="volunteer" name="roles" checked={formValues.roles === 'volunteer'} onChange={onChange} />
               </label>
-              <button onClick={formValues.roles === 'volunteer' ? '/Volunteer' : '/Student'}>Log In</button>
+              <button>Log In</button>
             </form>
           </div>
           )
       }
 
+    //   onClick={formValues.roles === 'volunteer' ? '/Volunteer' : '/Student'}
