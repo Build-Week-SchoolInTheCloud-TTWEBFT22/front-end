@@ -6,6 +6,6 @@ export default {
     black: '#A64AC9', 
     breakpoints:{
         mobile: '(max-width: 550px)',
-        tablet: '(max-width: 800px'
+        tablet: '(max-width: 800px)',
     }
 }
