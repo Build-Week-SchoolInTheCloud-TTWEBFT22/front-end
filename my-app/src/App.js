@@ -11,7 +11,7 @@ import './App.css';
 const HomeWrapper = styled.div`
  text-align: center;
   cursor: pointer;
-  background-color: ${(props) => props.theme.white};
+  background-color: ${(props) => props.theme.primaryColor};
   width: 100%;
   height: 100%;
   padding: 4%;

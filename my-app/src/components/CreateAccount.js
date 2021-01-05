@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { axiosWithAuth } from './axiosWithAuth';
+import axios from 'axios';
 import Students from './Student';
 import Volunteers from './Volunteer';
  
@@ -13,38 +13,30 @@ const initialFormValues = {
   }
 
 export default function CreateAccount (props) {
-    const [newUser, setNewUser] = useState({});
     const [formValues, setFormValues] = useState(initialFormValues);
     const history = useHistory();
     
     const student = (e) => {
         localStorage.clear("token");
 		history.push("/student");
-	};
-	useEffect(() => {
-		axiosWithAuth()
-			.get("/createnewuser/student")
-			.then((res) => {
-				console.log(res.data);
-				setNewUser(res.data)
-			})
-			.catch((err) => {
-				console.log(err);
-            })
-            .finally(() => {
-                setFormValues(initialFormValues);
-            })
-	}, []);
+    };
+    
     const volunteer = (e) => {
         localStorage.clear("token");
 		history.push("/volunteer");
-	};
-	useEffect(() => {
-		axiosWithAuth()
-			.get("/createnewuser/volunteer")
+    };
+    
+    const formSubmit = () => {  
+        const newUser = {
+          username: formValues.username.trim(),
+          primaryemail: formValues.primaryemail.trim(),
+          password: formValues.password.trim(),
+        }
+        if (formValues.roles === "volunteer"){
+            axios
+			.post("/createnewuser/volunteer", newUser)
 			.then((res) => {
 				console.log(res.data);
-			    setNewUser(res.data)
 			})
 			.catch((err) => {
 				console.log(err);
@@ -52,22 +44,26 @@ export default function CreateAccount (props) {
             .finally(() => {
                 setFormValues(initialFormValues);
             })
-    }, []);
-    
-    const formSubmit = () => {
-        const newUser = {
-          username: formValues.username.trim(),
-          primaryemail: formValues.primaryemail.trim(),
-          roles: ['student', 'volunteer'].filter((role) => formValues[role]),
-          password: formValues.password.trim(),
+            volunteer(newUser);
+        } else {
+            axios
+			.post("/createnewuser/student", newUser)
+			.then((res) => {
+				console.log(res.data);
+			})
+			.catch((err) => {
+				console.log(err);
+            })
+            .finally(() => {
+                setFormValues(initialFormValues);
+            })
+            student(newUser);
         }
-        volunteer(newUser);
-        student(newUser);
       }
 
       const onChange = (e) => 
-      setNewUser({
-        ...newUser, [e.target.name]: e.target.value,
+      setFormValues({
+        ...formValues, [e.target.name]: e.target.value,
       });
 
         return(
@@ -81,7 +77,7 @@ export default function CreateAccount (props) {
                 <input
                   type="text"
                   name="username"
-                  value={newUser.username}
+                  value={formValues.username}
                   onChange={onChange}
                 />
               </label>
@@ -90,7 +86,7 @@ export default function CreateAccount (props) {
                   <input
                   type="email"
                   name="primaryemail"
-                  value={newUser.primaryemail}
+                  value={formValues.primaryemail}
                   onChange={onChange}
                 />
               </label>
@@ -99,20 +95,26 @@ export default function CreateAccount (props) {
                 <input
                 type="password"
                 name="password"
-                value={newUser.password}
+                value={formValues.password}
                 onChange={onChange}
                 />
               </label>
               <label>Student
-              <input type="radio" value="student" name="roles" checked={formValues.roles === 'student'} onChange={onChange}/> 
+              <input 
+              type="radio" 
+              value="student" 
+              name="roles" 
+              onChange={onChange}/> 
               </label>
               <label>Volunteer
-              <input type="radio" value="volunteer" name="roles" checked={formValues.roles === 'volunteer'} onChange={onChange} />
+              <input 
+              type="radio" 
+              value="volunteer" 
+              name="roles" 
+              onChange={onChange} />
               </label>
               <button>Log In</button>
             </form>
           </div>
           )
       }
-
-    //   onClick={formValues.roles === 'volunteer' ? '/Volunteer' : '/Student'}
