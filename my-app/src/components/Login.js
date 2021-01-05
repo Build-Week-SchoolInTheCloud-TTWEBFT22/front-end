@@ -1,8 +1,72 @@
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import axios from 'axios';
+import styled from 'styled-components';
 import Admin from './Admin';
 import CreateAccount from './CreateAccount';
+
+const Title = styled.h1`
+  font-size: 3em;
+  color: ${(props) => props.theme.white};
+`;
+
+const MissionStatement = styled.p`
+  font-size: 1.5em;
+  color: ${(props) => props.theme.white};
+`;
+
+const InputDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.4em;
+  padding: 3%;
+  color: ${(props) => props.theme.white};
+`;
+const FacebookLike = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.5em;
+    color: ${(props) =>  props.theme.secondaryColor};
+    padding: 2%2%;
+    border: 2px solid ${(props) => props.theme.black};
+`;
+
+const ButtonStyled = styled.div`
+    button{
+        background: ${(props) => props.theme.white};
+        font-size: 1.3em;
+        border-radius: 3px;
+        border: 2px solid ${(props) => props.theme.white};
+        margin: 0 1em;
+        padding: 0.25em 1em;
+        color: ${(props) => props.theme.primaryColor};
+
+    &:hover {
+      transform: scale(1.1);
+      transition: all 0.5s ease-in-out;
+    }
+    transition: all 0.5s ease-in-out;
+    }
+`
+const LoginButton = styled.div`
+    button{
+        background: ${(props) => props.theme.black};
+        font-size: 1.3em;
+        border-radius: 3px;
+        border: 2px solid ${(props) => props.theme.black};
+        margin: 0 1em;
+        padding: 0.25em 4em;
+        color: ${(props) => props.theme.tertiaryColor};
+
+    &:hover {
+      transform: scale(1.1);
+      transition: all 0.5s ease-in-out;
+    }
+    transition: all 0.5s ease-in-out;
+    }
+`
 
 const Login = (props) => {
   const [credentials, setCredentials] = useState({username: "", password: ""});
@@ -25,7 +89,7 @@ const handleChange = (e) =>
     ...credentials, [e.target.name]: e.target.value,
   });
   const history = useHistory();
-  
+
   const createNew = (e) => {
     history.push('/create')
   }
@@ -33,10 +97,12 @@ const handleChange = (e) =>
     return(
       <div>
       <header>
-        <h1>School in the Cloud</h1>
-        <p>Our mission is to connect students with available, qualified volunteer mentors.</p>
+        <Title>School in the Cloud</Title>
+        <MissionStatement>Our mission is to connect students with available, qualified volunteer mentors.</MissionStatement>
       </header>
       <form onSubmit={login}>
+        <FacebookLike>
+          <InputDiv>
         <label>
           Username:
           <input
@@ -55,12 +121,17 @@ const handleChange = (e) =>
           onChange={handleChange}
           />
         </label>
+        </InputDiv>
+        <LoginButton>
         <button onClick={login}>Log In</button>
+        </LoginButton>
         <br />
-        <p>Ready to Join!</p>
         <Link to={'/create'}>
+          <ButtonStyled>
         <button className="create" onClick={createNew}>Create New Account</button>
+        </ButtonStyled>
         </Link>
+        </FacebookLike>
       </form>
     </div>
     )
@@ -68,11 +139,3 @@ const handleChange = (e) =>
 
 export default Login;
 
-// const HomeWrapper = styled.div`
- /* text-align: center;
-  cursor: pointer;
-  background-color: ${(props) => props.theme.white};
-  width: 100%;
-  height: 100%;
-  padding: 4%;
-`; */

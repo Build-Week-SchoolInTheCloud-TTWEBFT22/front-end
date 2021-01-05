@@ -1,8 +1,49 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import styled from 'styled-components';
 import Students from './Student';
 import Volunteers from './Volunteer';
+
+const Title = styled.h1`
+  font-size: 3em;
+  color: ${(props) => props.theme.white};
+`;
+
+const SmallerDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 1.4em;
+  padding: 3%;
+  color: ${(props) => props.theme.white};
+`;
+const CreateDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.5em;
+    color: ${(props) =>  props.theme.secondaryColor};
+    padding: 2%2%;
+    border: 2px solid ${(props) => props.theme.black};
+`;
+const LoginButton = styled.div`
+    button{
+        background: ${(props) => props.theme.black};
+        font-size: 1.3em;
+        border-radius: 3px;
+        border: 2px solid ${(props) => props.theme.black};
+        margin: 0 1em;
+        padding: 0.25em 4em;
+        color: ${(props) => props.theme.tertiaryColor};
+
+    &:hover {
+      transform: scale(1.1);
+      transition: all 0.5s ease-in-out;
+    }
+    transition: all 0.5s ease-in-out;
+    }
+`
  
 const initialFormValues = {
     username: '',
@@ -69,9 +110,11 @@ export default function CreateAccount (props) {
         return(
             <div>
             <header>
-              <h1>Create Your Account</h1>
+              <Title>Create Your Account</Title>
             </header>
             <form onSubmit={formSubmit}>
+              <CreateDiv>
+                <SmallerDiv>
               <label>
                 Username:
                 <input
@@ -113,7 +156,11 @@ export default function CreateAccount (props) {
               name="roles" 
               onChange={onChange} />
               </label>
+              </SmallerDiv>
+              <LoginButton>
               <button>Log In</button>
+              </LoginButton>
+              </CreateDiv>
             </form>
           </div>
           )

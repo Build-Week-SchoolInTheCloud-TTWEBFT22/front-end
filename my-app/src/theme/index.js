@@ -1,9 +1,9 @@
 export default {
-    primaryColor: '#FFB48F',
-    secondaryColor: '#FCCD04',
-    tertiaryColor: '#17E9E0',
-    white: '#F5E6CC',
-    black: '#A64AC9', 
+    primaryColor: '#3AAFA9',
+    secondaryColor: '#2B7A78',
+    tertiaryColor: '#DEF2F1',
+    white: '#FEFFFF',
+    black: '#17252A', 
     breakpoints:{
         mobile: '(max-width: 550px)',
         tablet: '(max-width: 800px)',
