@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
-import Students from './Student';
-import Volunteers from './Volunteer';
 
 const Title = styled.h1`
   font-size: 3em;
@@ -44,124 +42,114 @@ const LoginButton = styled.div`
     transition: all 0.5s ease-in-out;
     }
 `
- 
 const initialFormValues = {
     username: '',
     primaryemail: '',
     password: '', 
-    volunteer: false, 
-    student: false, 
   }
 
 export default function CreateAccount (props) {
-    const [formValues, setFormValues] = useState(initialFormValues);
-    const history = useHistory();
     
-    const student = (e) => {
-        localStorage.clear("token");
-		history.push("/student");
-    };
-    
-    const volunteer = (e) => {
-        localStorage.clear("token");
-		history.push("/volunteer");
-    };
-    
-    const formSubmit = () => {  
-        const newUser = {
-          username: formValues.username.trim(),
-          primaryemail: formValues.primaryemail.trim(),
-          password: formValues.password.trim(),
-        }
-        if (formValues.roles === "volunteer"){
-            axios
-			.post("/createnewuser/volunteer", newUser)
-			.then((res) => {
-				console.log(res.data);
-			})
-			.catch((err) => {
-				console.log(err);
-            })
-            .finally(() => {
-                setFormValues(initialFormValues);
-            })
-            volunteer(newUser);
-        } else {
-            axios
-			.post("/createnewuser/student", newUser)
-			.then((res) => {
-				console.log(res.data);
-			})
-			.catch((err) => {
-				console.log(err);
-            })
-            .finally(() => {
-                setFormValues(initialFormValues);
-            })
-            student(newUser);
-        }
-      }
+  const [formValues, setFormValues] = useState(initialFormValues);
+  const history = useHistory();
 
-      const onChange = (e) => 
-      setFormValues({
-        ...formValues, [e.target.name]: e.target.value,
-      });
+  const create = (e) => {
+    history.push('/')
+  }
+    
+  const formSubmit = () => {  
+    const newUser = {
+      username: formValues.username.trim(),
+      primaryemail: formValues.primaryemail.trim(),
+      password: formValues.password.trim(),
+    }
 
-        return(
-            <div>
-            <header>
-              <Title>Create Your Account</Title>
-            </header>
-            <form onSubmit={formSubmit}>
-              <CreateDiv>
-                <SmallerDiv>
-              <label>
-                Username:
-                <input
-                  type="text"
-                  name="username"
-                  value={formValues.username}
-                  onChange={onChange}
-                />
-              </label>
-              <label>
-                  Email:
-                  <input
-                  type="email"
-                  name="primaryemail"
-                  value={formValues.primaryemail}
-                  onChange={onChange}
-                />
-              </label>
-              <label>
-                Password:
-                <input
-                type="password"
-                name="password"
-                value={formValues.password}
-                onChange={onChange}
-                />
-              </label>
-              <label>Student
-              <input 
-              type="radio" 
-              value="student" 
-              name="roles" 
-              onChange={onChange}/> 
-              </label>
-              <label>Volunteer
-              <input 
-              type="radio" 
-              value="volunteer" 
-              name="roles" 
-              onChange={onChange} />
-              </label>
-              </SmallerDiv>
-              <LoginButton>
-              <button>Log In</button>
-              </LoginButton>
-              </CreateDiv>
-            </form>
-          </div>
-          )
+    if (formValues.roles === "volunteer"){
+        axios
+        .post("https://schoolinthecloudstt22.herokuapp.com/createnewuser/volunteer", newUser)
+        .then((res) => {
+          console.log(res.data);
+          localStorage.setItem("token", res.data.access_token);
+          setFormValues(initialFormValues);
+          history.push("/");
+          
+        })
+        .catch((err) => console.log(err))
+      } else {
+        axios
+        .post("https://schoolinthecloudstt22.herokuapp.com/createnewuser/student", newUser)
+        .then((res) => {
+          localStorage.setItem("token", res.data.access_token);
+          setFormValues(initialFormValues);
+          history.push("/");
+          console.log(res.data);
+        })
+        .catch((err) => console.log(err))
       }
+    }
+    
+    const onChange = (e) => 
+    setFormValues({
+      ...formValues, [e.target.name]: e.target.value,
+    });
+
+    return(
+        <div>
+        <header>
+          <Title>Create Your Account</Title>
+        </header>
+        <form onSubmit={formSubmit}>
+          <CreateDiv>
+            <SmallerDiv>
+          <label>
+            Username:
+            <input
+              type="text"
+              name="username"
+              value={formValues.username}
+              onChange={onChange}
+            />
+          </label>
+          <label>
+              Email:
+              <input
+              type="email"
+              name="primaryemail"
+              value={formValues.primaryemail}
+              onChange={onChange}
+            />
+          </label>
+          <label>
+            Password:
+            <input
+            type="password"
+            name="password"
+            value={formValues.password}
+            onChange={onChange}
+            />
+          </label>
+          <label>Student
+          <input 
+          type="radio" 
+          value="student" 
+          name="roles" 
+          onChange={onChange}/> 
+          </label>
+          <label>Volunteer
+          <input 
+          type="radio" 
+          value="volunteer" 
+          name="roles" 
+          onChange={onChange} />
+          </label>
+          </SmallerDiv>
+          <LoginButton>
+          <Link to={'/'}>
+          <button className="createaccount" onClick={create}>Create</button>
+          </Link>
+          </LoginButton>
+          </CreateDiv>
+        </form>
+      </div>
+      )
+    }

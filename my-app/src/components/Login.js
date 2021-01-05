@@ -70,30 +70,54 @@ const LoginButton = styled.div`
 
 const Login = (props) => {
   const [credentials, setCredentials] = useState({username: "", password: ""});
-  
+  const history = useHistory();
+
   const login = (e) => {
     e.preventDefault();
+    if(credentials.roles === "volunteer"){
+      axios.post('https://schoolinthecloudstt22.herokuapp.com/login', `grant_type=password&username=${credentials.username}&password=${credentials.password}`, {headers: {Authorization: `Basic ${btoa("lambda-client:lambda-secret")}`,
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    },
+    )
+    .then((res) => {
+      console.log(res.data); 
+      localStorage.setItem("token", res.data.access_token);
+			props.history.push("/volunteer");
+    });
+  } else if(credentials.roles === "student"){
     axios.post('https://schoolinthecloudstt22.herokuapp.com/login', `grant_type=password&username=${credentials.username}&password=${credentials.password}`, {headers: {Authorization: `Basic ${btoa("lambda-client:lambda-secret")}`,
     "Content-Type": "application/x-www-form-urlencoded",
     },
   },
   )
-    .then((res) => {
-      console.log(res.data); 
-      localStorage.setItem("token", res.data.access_token);
-			props.history.push("/admin");
-    });
-  }
+  .then((res) => {
+    console.log(res.data); 
+    localStorage.setItem("token", res.data.access_token);
+    props.history.push("/student");
+  });
+} else {
+    axios.post('https://schoolinthecloudstt22.herokuapp.com/login', `grant_type=password&username=${credentials.username}&password=${credentials.password}`, {headers: {Authorization: `Basic ${btoa("lambda-client:lambda-secret")}`,
+    "Content-Type": "application/x-www-form-urlencoded",
+    },
+  },
+  )
+  .then((res) => {
+    console.log(res.data); 
+    localStorage.setItem("token", res.data.access_token);
+    props.history.push("/admin");
+  });
+}
+}
+
 const handleChange = (e) => 
   setCredentials({
     ...credentials, [e.target.name]: e.target.value,
   });
-  const history = useHistory();
 
-  const createNew = (e) => {
-    history.push('/create')
-  }
-
+const createNew = (e) => {
+  history.push('/create')
+}
     return(
       <div>
       <header>
@@ -121,6 +145,27 @@ const handleChange = (e) =>
           onChange={handleChange}
           />
         </label>
+        <label>Student
+          <input 
+          type="radio" 
+          value="student" 
+          name="roles" 
+          onChange={handleChange}/> 
+          </label>
+          <label>Volunteer
+          <input 
+          type="radio" 
+          value="volunteer" 
+          name="roles" 
+          onChange={handleChange} />
+          </label>
+          <label>Administrator
+          <input 
+          type="radio" 
+          value="admin" 
+          name="roles" 
+          onChange={handleChange} />
+          </label>
         </InputDiv>
         <LoginButton>
         <button onClick={login}>Log In</button>
@@ -138,4 +183,3 @@ const handleChange = (e) =>
 }
 
 export default Login;
-

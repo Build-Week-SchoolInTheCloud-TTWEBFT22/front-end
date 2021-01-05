@@ -7,28 +7,16 @@ import AllTasks from './AllTasks';
 import VolunteerCard from './VolunteerCard';
 
 export default function Student (props) {
-    const [allTasks, setAllTasks] = useState({});
+  const [allTasks, setAllTasks] = useState({});
+  const {id} = props;
+  // const [logout, setLogout] = useState({});
     
-    const history = useHistory();
+  const history = useHistory();
     
-    const logOut2 = (e) => {
-        history.push('/login')
-      }
-    
-    const viewAllTasks = (e) => {
-        localStorage.clear("token");
-		history.push("/volunteer");
-    };
+  const logOut2 = (e) => {
+    history.push('/logout')
+    }
 
-    // axios.delete('tasks/task/{taskid}', {
-    //     headers: {
-    //       Authorization: authorizationToken
-    //     },
-    //     data: {
-    //       source: source
-    //     }
-    //   });
-    
 	useEffect(() => {
 		axiosWithAuth()
 			.get("/tasks/tasks")
@@ -41,17 +29,40 @@ export default function Student (props) {
             })
     }, []);
 
+  useEffect(() => {
+    axiosWithAuth()
+    .get("/logout")
+    .then((res) => {
+      console.log(res.data)
+      // history.push('/logout')
+      })
+    })
+
+    useEffect(() => {
+      axiosWithAuth()
+        .get("/tasks/task/{id}")
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+              })
+      }, [id]);
+
     return(
         <div>
         <header>
           <h1>Admin Page</h1>
         </header>
-       
-        <AllTasks />
+       {allTasks.map((all)=> {
+         return <AllTasks key={all.taskid} description={all.description} />
+       })}
+       <AllTasks />
         <footer>
-            <Link to={'/'}>
+            <Link to={'/logout'}>
             <button className="logout" onClick={logOut2}>Log Out</button>
             </Link>
         </footer>
         </div>)
 }
+

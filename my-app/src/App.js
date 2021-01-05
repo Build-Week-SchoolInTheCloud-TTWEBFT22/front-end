@@ -6,6 +6,7 @@ import Student from './components/Student';
 import Admin from './components/Admin';
 import Volunteer from './components/Volunteer';
 import CreateAccount from './components/CreateAccount';
+import Logout from './components/Logout';
 import './App.css';
 
 const HomeWrapper = styled.div`
@@ -26,6 +27,7 @@ return(
         <Route path='/create' component={CreateAccount} />
         <Route path='/student' component={Student} />
         <Route path='/volunteer' component={Volunteer} />
+        <Route path='/logout' component={Logout} />
         <Route exact path = '/' component={Login} />
         </Switch>
     </HomeWrapper>

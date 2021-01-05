@@ -6,6 +6,6 @@ export const axiosWithAuth = () => {
         headers: {
             Authorization: `Bearer ${token}`,
         },
-        baseURL: 'https://schoolinthecloudstt22.herokuapp.com/login',
+        baseURL: 'https://schoolinthecloudstt22.herokuapp.com',
     })
 }

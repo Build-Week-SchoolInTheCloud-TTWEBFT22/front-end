@@ -14,16 +14,23 @@ export default function Student (props) {
     const logOut1 = (e) => {
         history.push('/login')
       }
-    
+    useEffect(() => {
+      axiosWithAuth()
+        .get("/logout")
+        .then((res) => {
+            console.log(res.data)
+            history.push('/logout')
+      })
+    })
     // const viewAllTasks = (e) => {
     //     localStorage.clear("token");
 		// history.push("/volunteer");
     // };
     
-    const viewAssignedTasks = (e) => {
-        localStorage.clear("token");
-		history.push("/volunteer");
-	};
+  //   const viewAssignedTasks = (e) => {
+  //       localStorage.clear("token");
+	// 	history.push("/volunteer");
+	// };
 	// useEffect(() => {
 	// 	axiosWithAuth()
 	// 		.get("/tasks/tasks")
@@ -59,7 +66,7 @@ export default function Student (props) {
         {/* <AllTasks /> */}
         <AssignedTasks />
         <footer>
-            <Link to={'/'}>
+            <Link to={'/logout'}>
             <button className="logout" onClick={logOut1}>Log Out</button>
             </Link>
         </footer>

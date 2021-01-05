@@ -1,19 +1,19 @@
 import React from 'react';
 
 function VolunteerCard({details}){
+  // const {username, description} = props;
     if (!details) {
         return <h3>One moment please...</h3>
-      }
-    
+    }
       return (
         <div className='volunteer container'>
-          <h2>This is the volunteer's username: {details.username}</h2>
+          <h2>This is the volunteer's username: </h2> 
+          {details.username}
           {
-            !!details.usertasks && !!details.usertasks.length &&
             <div>
               These are the tasks they're available to do:
               <ul>
-                {details.usertasks.map((task, idx) => <li key={idx}>{task}</li>)}
+                {details.usertasks}
               </ul>
             </div>
           }
@@ -22,3 +22,8 @@ function VolunteerCard({details}){
     }
  
     export default VolunteerCard;
+
+    // volunteer.usertasks.description;
+    //     }).map(function(volunteer){
+    //         return volunteer.username
+    //     })}
