@@ -17,7 +17,6 @@ export default function Student (props) {
         .get("/logout")
         .then((res) => {
             console.log(res.data)
-            history.push('/logout')
         })
     })
 	useEffect(() => {

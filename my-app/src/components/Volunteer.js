@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
+import AllTasks from './AllTasks';
 // import AllTasks from './AllTasks';
 import AssignedTasks from './AssignedTasks';
 import { axiosWithAuth } from './axiosWithAuth';
@@ -7,7 +8,7 @@ import { axiosWithAuth } from './axiosWithAuth';
 
 
 export default function Student (props) {
-    // const [allTasks, setAllTasks] = useState({});
+    const [findAllTasks, setFindAllTasks] = useState({});
     const [assignedTasks, setAssignedTasks] = useState({});
     const history = useHistory();
     
@@ -19,52 +20,45 @@ export default function Student (props) {
         .get("/logout")
         .then((res) => {
             console.log(res.data)
-            history.push('/logout')
       })
     })
-    // const viewAllTasks = (e) => {
-    //     localStorage.clear("token");
-		// history.push("/volunteer");
-    // };
-    
-  //   const viewAssignedTasks = (e) => {
-  //       localStorage.clear("token");
-	// 	history.push("/volunteer");
-	// };
-	// useEffect(() => {
-	// 	axiosWithAuth()
-	// 		.get("/tasks/tasks")
-	// 		.then((res) => {
-	// 			console.log(res.data);
-	// 			setAllTasks(res.data)
-	// 		})
-	// 		.catch((err) => {
-	// 			console.log(err);
-  //           })
-  //   }, []);
 
     useEffect(() => {
-		axiosWithAuth()
-			.get("tasks/task/{taskid}")
-			.then((res) => {
-				console.log(res.data);
-				setAssignedTasks(res.data)
-			})
-			.catch((err) => {
-				console.log(err);
-            })
-    }, []);
+      axiosWithAuth()
+        .get("/tasks/tasks")
+        .then((res) => {
+          console.log(res.data);
+          setFindAllTasks(res.data)
+        })
+        .catch((err) => {
+          console.log(err);
+              })
+      }, []);
+  
+  
+      // useEffect(() => {
+      //   axiosWithAuth()
+      //     .get("/tasks/task/{id}")
+      //     .then((res) => {
+      //       console.log(res.data);
+      //        assignedTasks(res.data)
+      //     })
+      //     .catch((err) => {
+      //       console.log(err);
+      //           })
+      //   }, [id]);
 
     return(
         <div>
         <header>
           <h1>Volunteer Mentor Tasks</h1>
         </header>
-        {/* {allTasks.map((all) => {
-            return <AllTasks key={all.id} description={all} />
-        })} */}
-        {/* <AllTasks /> */}
-        <AssignedTasks />
+        {findAllTasks.map((all)=> {
+         return <AllTasks key={all.taskid} description={all} />
+       })}
+        {assignedTasks.map((assign) => {
+          return <AssignedTasks key={assign.taskid} description={assign} />
+        })}
         <footer>
             <Link to={'/logout'}>
             <button className="logout" onClick={logOut1}>Log Out</button>
