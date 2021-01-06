@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
-import Admin from './Admin';
-import CreateAccount from './CreateAccount';
+// import Admin from './Admin';
+// import CreateAccount from './CreateAccount';
 
 const Title = styled.h1`
   font-size: 3em;
@@ -85,29 +85,29 @@ const Login = (props) => {
       localStorage.setItem("token", res.data.access_token);
 			props.history.push("/volunteer");
     });
-  } else if(credentials.roles === "student"){
-    axios.post('https://schoolinthecloudstt22.herokuapp.com/login', `grant_type=password&username=${credentials.username}&password=${credentials.password}`, {headers: {Authorization: `Basic ${btoa("lambda-client:lambda-secret")}`,
-    "Content-Type": "application/x-www-form-urlencoded",
+    } else if(credentials.roles === "student"){
+      axios.post('https://schoolinthecloudstt22.herokuapp.com/login', `grant_type=password&username=${credentials.username}&password=${credentials.password}`, {headers: {Authorization: `Basic ${btoa("lambda-client:lambda-secret")}`,
+      "Content-Type": "application/x-www-form-urlencoded",
     },
-  },
-  )
-  .then((res) => {
-    console.log(res.data); 
-    localStorage.setItem("token", res.data.access_token);
-    props.history.push("/student");
-  });
-} else {
-    axios.post('https://schoolinthecloudstt22.herokuapp.com/login', `grant_type=password&username=${credentials.username}&password=${credentials.password}`, {headers: {Authorization: `Basic ${btoa("lambda-client:lambda-secret")}`,
-    "Content-Type": "application/x-www-form-urlencoded",
     },
-  },
-  )
-  .then((res) => {
-    console.log(res.data); 
-    localStorage.setItem("token", res.data.access_token);
-    props.history.push("/admin");
-  });
-}
+    )
+    .then((res) => {
+      console.log(res.data); 
+      localStorage.setItem("token", res.data.access_token);
+      props.history.push("/student");
+    });
+    } else {
+      axios.post('https://schoolinthecloudstt22.herokuapp.com/login', `grant_type=password&username=${credentials.username}&password=${credentials.password}`, {headers: {Authorization: `Basic ${btoa("lambda-client:lambda-secret")}`,
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    },
+    )
+    .then((res) => {
+      console.log(res.data); 
+      localStorage.setItem("token", res.data.access_token);
+      props.history.push("/admin");
+    });
+  }
 }
 
 const handleChange = (e) => 
@@ -118,26 +118,24 @@ const handleChange = (e) =>
 const createNew = (e) => {
   history.push('/create')
 }
-    return(
-      <div>
-      <header>
-        <Title>School in the Cloud</Title>
-        <MissionStatement>Our mission is to connect students with available, qualified volunteer mentors.</MissionStatement>
-      </header>
-      <form onSubmit={login}>
-        <FacebookLike>
-          <InputDiv>
-        <label>
-          Username:
+return(
+  <div>
+    <header>
+      <Title>School in the Cloud</Title>
+      <MissionStatement>Our mission is to connect students with available, qualified volunteer mentors.</MissionStatement>
+    </header>
+    <form onSubmit={login}>
+      <FacebookLike>
+        <InputDiv>
+        <label>Username:
           <input
-            type="text"
-            name="username"
-            value={credentials.username}
-            onChange={handleChange}
+          type="text"
+          name="username"
+          value={credentials.username}
+          onChange={handleChange}
           />
         </label>
-        <label>
-          Password:
+        <label>Password:
           <input
           type="password"
           name="password"
@@ -146,40 +144,42 @@ const createNew = (e) => {
           />
         </label>
         <label>Student
-          <input 
+         <input 
           type="radio" 
           value="student" 
           name="roles" 
-          onChange={handleChange}/> 
-          </label>
-          <label>Volunteer
+          onChange={handleChange}
+          /> 
+        </label>
+        <label>Volunteer
           <input 
           type="radio" 
           value="volunteer" 
           name="roles" 
-          onChange={handleChange} />
-          </label>
-          <label>Administrator
+          onChange={handleChange} 
+          />
+        </label>
+        <label>Administrator
           <input 
           type="radio" 
           value="admin" 
           name="roles" 
-          onChange={handleChange} />
-          </label>
-        </InputDiv>
-        <LoginButton>
+          onChange={handleChange} 
+          />
+        </label>
+      </InputDiv>
+      <LoginButton>
         <button onClick={login}>Log In</button>
-        </LoginButton>
-        <br />
-        <Link to={'/create'}>
-          <ButtonStyled>
-        <button className="create" onClick={createNew}>Create New Account</button>
+      </LoginButton>
+      <br />
+      <Link to={'/create'}>
+        <ButtonStyled>
+          <button className="create" onClick={createNew}>Create New Account</button>
         </ButtonStyled>
-        </Link>
-        </FacebookLike>
-      </form>
-    </div>
-    )
+      </Link>
+    </FacebookLike>
+  </form>
+</div>
+)
 }
-
 export default Login;

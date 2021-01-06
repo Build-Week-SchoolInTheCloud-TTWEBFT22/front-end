@@ -28,7 +28,7 @@ return(
         <Route path='/student' component={Student} />
         <Route path='/volunteer' component={Volunteer} />
         <Route path='/logout' component={Logout} />
-        <Route exact path = '/' component={Login} />
+        <Route path = '/login' component={Login} />
         </Switch>
     </HomeWrapper>
 )

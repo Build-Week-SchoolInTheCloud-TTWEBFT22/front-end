@@ -8,8 +8,8 @@ import { axiosWithAuth } from './axiosWithAuth';
 
 
 export default function Student (props) {
-    const [findAllTasks, setFindAllTasks] = useState({});
-    const [assignedTasks, setAssignedTasks] = useState({});
+    const [findAllTasks, setFindAllTasks] = useState([]);
+    // const [assignedTasks, setAssignedTasks] = useState([]);
     const history = useHistory();
     
     const logOut1 = (e) => {
@@ -53,12 +53,12 @@ export default function Student (props) {
         <header>
           <h1>Volunteer Mentor Tasks</h1>
         </header>
-        {findAllTasks.map((all)=> {
-         return <AllTasks key={all.taskid} description={all} />
+        {findAllTasks.map((all, id)=> {
+         return <AllTasks key={id} description={all} />
        })}
-        {assignedTasks.map((assign) => {
-          return <AssignedTasks key={assign.taskid} description={assign} />
-        })}
+        {/* {assignedTasks.map((assign, id) => {
+          return <AssignedTasks key={id} description={assign} />
+        })} */}
         <footer>
             <Link to={'/logout'}>
             <button className="logout" onClick={logOut1}>Log Out</button>

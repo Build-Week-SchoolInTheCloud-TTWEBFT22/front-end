@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -49,15 +49,15 @@ const initialFormValues = {
   }
 
 export default function CreateAccount (props) {
-    
   const [formValues, setFormValues] = useState(initialFormValues);
   const history = useHistory();
 
-  const create = (e) => {
-    history.push('/')
-  }
+  // const create = (e) => {
+  //   history.push('/')
+  // }
     
-  const formSubmit = () => {  
+  const formSubmit = (e) => {
+    e.preventDefault(); 
     const newUser = {
       username: formValues.username.trim(),
       primaryemail: formValues.primaryemail.trim(),
@@ -71,7 +71,7 @@ export default function CreateAccount (props) {
           console.log(res.data);
           localStorage.setItem("token", res.data.access_token);
           setFormValues(initialFormValues);
-          history.push("/");
+          history.push("/login");
           
         })
         .catch((err) => console.log(err))
@@ -81,7 +81,7 @@ export default function CreateAccount (props) {
         .then((res) => {
           localStorage.setItem("token", res.data.access_token);
           setFormValues(initialFormValues);
-          history.push("/");
+          history.push("/login");
           console.log(res.data);
         })
         .catch((err) => console.log(err))
@@ -144,9 +144,9 @@ export default function CreateAccount (props) {
           </label>
           </SmallerDiv>
           <LoginButton>
-          <Link to={'/'}>
-          <button className="createaccount" onClick={create}>Create</button>
-          </Link>
+          {/* <Link to={'/'}> */}
+          <button className="createaccount">Create</button>
+          {/* </Link> */}
           </LoginButton>
           </CreateDiv>
         </form>

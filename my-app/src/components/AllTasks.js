@@ -5,7 +5,7 @@ function AllTasks(props){
     
       return (
         <div className='alltasks container'>
-          <h2>These are all the available tasks: {description.description}</h2>
+          <h2>These are all the available tasks: {description}</h2>
         </div>
       )
     }

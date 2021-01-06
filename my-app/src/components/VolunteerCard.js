@@ -1,10 +1,6 @@
 import React from 'react';
 
 function VolunteerCard({details}){
-  // const {username, description} = props;
-    if (!details) {
-        return <h3>One moment please...</h3>
-    }
       return (
         <div className='volunteer container'>
           <h2>This is the volunteer's username: </h2> 
@@ -20,10 +16,6 @@ function VolunteerCard({details}){
         </div>
       )
     }
- 
     export default VolunteerCard;
 
-    // volunteer.usertasks.description;
-    //     }).map(function(volunteer){
-    //         return volunteer.username
-    //     })}
+  

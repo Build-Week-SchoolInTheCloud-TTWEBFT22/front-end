@@ -35,8 +35,8 @@ export default function Student (props) {
         <header>
           <h1>Find a Volunteer Mentor</h1>
         </header>
-        {findVolunteer.map((volunteer) => {
-            return <VolunteerCard key={volunteer.userid} details={volunteer}/>
+        {findVolunteer.map((volunteer, id) => {
+            return <VolunteerCard key={id} details={volunteer}/>
         })}
         
         <footer>
