@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
-// import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import { axiosWithAuth } from './axiosWithAuth';
 import AllTasks from './AllTasks';
 import VolunteerCard from './VolunteerCard';
@@ -8,8 +7,6 @@ import VolunteerCard from './VolunteerCard';
 export default function Student (props) {
   const [allTasks, setAllTasks] = useState({});
   const [selectVolunteer, setSelectVolunteer] = useState({});
-  // const {id} = props;
-  // const [logout, setLogout] = useState({});
   const history = useHistory();
     
   const logOut2 = (e) => { 
@@ -20,7 +17,6 @@ export default function Student (props) {
       })
     history.push('/logout')
     }
-
 
 	useEffect(() => {
 		axiosWithAuth()
@@ -34,29 +30,17 @@ export default function Student (props) {
             })
     }, []);
 
-    useEffect(() => {
-      axiosWithAuth()
-        .get("/volunteers/volunteers")
-        .then((res) => {
-          console.log(res.data);
-          setSelectVolunteer(res.data)
-        })
-        .catch((err) => {
-          console.log(err);
-              })
-      }, []);
-
-
-    // useEffect(() => {
-    //   axiosWithAuth()
-    //     .get("/tasks/task/{id}")
-    //     .then((res) => {
-    //       console.log(res.data);
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //           })
-    //   }, [id]);
+  useEffect(() => {
+    axiosWithAuth()
+    .get("/volunteers/volunteers")
+    .then((res) => {
+      console.log(res.data);
+      setSelectVolunteer(res.data)
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    }, []);
 
     return(
         <div>
@@ -69,19 +53,25 @@ export default function Student (props) {
             return <AllTasks key={task.taskid} description={task.description} /> 
           }) : null 
         }
-       {/* {selectVolunteer.map((volunteer, id) => {
-            return <VolunteerCard key={id} details={volunteer}/>
-        })} */}
-      {/* {allTasks.map((all) => (
-        <div>{all}</div>
-      ))} */}
-        {/* <p>These are your tasks: {allTasks.data.u}</p>  */}
-        {/* <p>This is the volunteer's info: {selectVolunteer}</p>  */}
+         {selectVolunteer.length > 0 ? 
+          selectVolunteer.map(volunteer => {
+            return <VolunteerCard key={volunteer.userid} username={volunteer.username} /> 
+          }) : null 
+        }
         <footer>
-            <Link to={'/logout'}>
             <button className="logout" onClick={logOut2}>Log Out</button>
-            </Link>
         </footer>
         </div>)
 }
 
+
+    // useEffect(() => {
+    //   axiosWithAuth()
+    //     .get("/tasks/task/{id}")
+    //     .then((res) => {
+    //       console.log(res.data);
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //           })
+    //   }, [id]);

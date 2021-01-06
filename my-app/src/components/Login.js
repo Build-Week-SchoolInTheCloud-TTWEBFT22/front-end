@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
-// import Admin from './Admin';
-// import CreateAccount from './CreateAccount';
 
 const Title = styled.h1`
   font-size: 3em;

@@ -48,13 +48,9 @@ const initialFormValues = {
     password: '', 
   }
 
-export default function CreateAccount (props) {
+export default function CreateAccount(props) {
   const [formValues, setFormValues] = useState(initialFormValues);
   const history = useHistory();
-
-  // const create = (e) => {
-  //   history.push('/')
-  // }
     
   const formSubmit = (e) => {
     e.preventDefault(); 
@@ -94,15 +90,14 @@ export default function CreateAccount (props) {
     });
 
     return(
-        <div>
+      <div>
         <header>
           <Title>Create Your Account</Title>
         </header>
         <form onSubmit={formSubmit}>
           <CreateDiv>
             <SmallerDiv>
-          <label>
-            Username:
+          <label>Username:
             <input
               type="text"
               name="username"
@@ -110,8 +105,7 @@ export default function CreateAccount (props) {
               onChange={onChange}
             />
           </label>
-          <label>
-              Email:
+          <label>Email:
               <input
               type="email"
               name="primaryemail"
@@ -119,8 +113,7 @@ export default function CreateAccount (props) {
               onChange={onChange}
             />
           </label>
-          <label>
-            Password:
+          <label>Password:
             <input
             type="password"
             name="password"
@@ -144,9 +137,7 @@ export default function CreateAccount (props) {
           </label>
           </SmallerDiv>
           <LoginButton>
-          {/* <Link to={'/'}> */}
           <button className="createaccount">Create</button>
-          {/* </Link> */}
           </LoginButton>
           </CreateDiv>
         </form>
