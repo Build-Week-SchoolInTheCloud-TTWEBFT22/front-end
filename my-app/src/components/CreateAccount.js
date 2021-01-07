@@ -62,12 +62,14 @@ const initialFormValues = {
     username: '',
     primaryemail: '',
     password: '', 
+    roles: '',
   }
 
   const initialFormErrors = {
     username: '',
     primaryemail: '',
-    password: '', 
+    password: '',
+    roles: '', 
   }
 
   const initialDisabled = true;
@@ -98,7 +100,8 @@ export default function CreateAccount(props) {
     })
   }
 
-  useEffect(() => {
+  useEffect((e) => {
+    e.preventDefault();
     schema.isValid(formValues).then((valid) => {
       setDisabled(!valid);
     })

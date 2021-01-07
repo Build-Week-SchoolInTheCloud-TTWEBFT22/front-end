@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 import teacherImage1 from '../images/teacherImage1.png';
 import kidImage1  from '../images/kidImage1.png';
+import * as yup from 'yup';
+import schema from './validation/formSchema1';
 
 const HeaderImage = styled.img`
   height: 100%;
   width: 40%;
-  border-radius: 10px; 
-  
+  border-radius: 10px;
 `;
 
 const KidImage = styled.img`
   height: 100%;
   width: 40%;
   border-radius: 10px; 
-  
 `;
 
 const VipkidFlex = styled.div`
@@ -106,9 +106,58 @@ const LoginButton = styled.div`
     }
 `;
 
+const initialFormValues1 = {
+  username: '',
+  password: '', 
+  roles: '',
+}
+
+const initialFormErrors1 = {
+  username: '',
+  password: '', 
+  roles: '',
+}
+
+const initialDisabled1 = true;
+
 const Login = (props) => {
-  const [credentials, setCredentials] = useState({username: "", password: ""});
+  const [credentials, setCredentials] = useState(initialFormValues1);
+  const [formErrors1, setFormErrors1] = useState(initialFormErrors1);
+  const [disabled1, setDisabled1] = useState(initialDisabled1);
   const history = useHistory();
+
+  const inputChange1 = (e) => {
+    e.preventDefault();
+    yup.reach(schema, e.target.name)
+    .validate(e.target.value)
+    .then(() => {
+      setFormErrors1({
+        ...formErrors1, 
+        [e.target.name]: '',
+      })
+    })
+    .catch((err) => {
+      setFormErrors1({
+        ...formErrors1,
+        [e.target.name]: err.errors[0],
+      })
+    
+    })
+    console.log(e.target.value)
+    setCredentials({
+      ...credentials, [e.target.name]: e.target.value,
+    })
+  }
+
+  useEffect(() => {
+    schema.isValid(credentials).then((valid) => {
+      setDisabled1(!valid);
+    })
+  }, [credentials]);
+
+const createNew = (e) => {
+  history.push('/create')
+}
 
   const login = (e) => {
     e.preventDefault();
@@ -148,14 +197,6 @@ const Login = (props) => {
   }
 }
 
-const handleChange = (e) => 
-  setCredentials({
-    ...credentials, [e.target.name]: e.target.value,
-  });
-
-const createNew = (e) => {
-  history.push('/create')
-}
 return(
   <VipkidFlex>
     <TopDiv>
@@ -170,6 +211,10 @@ return(
       </TopDiv>
       <div>
     <form onSubmit={login}>
+    <div className="errors" style={{color: 'white'}}>
+      <div>{formErrors1.username}</div>
+      <div>{formErrors1.password}</div>
+    </div>
       <FacebookLike>
         <InputDiv>
         <label>Username:
@@ -177,7 +222,7 @@ return(
           type="text"
           name="username"
           value={credentials.username}
-          onChange={handleChange}
+          onChange={inputChange1}
           />
         </label>
         <label>Password:
@@ -185,7 +230,7 @@ return(
           type="password"
           name="password"
           value={credentials.password}
-          onChange={handleChange}
+          onChange={inputChange1}
           />
         </label>
         <label>Student
@@ -193,7 +238,7 @@ return(
           type="radio" 
           value="student" 
           name="roles" 
-          onChange={handleChange}
+          onChange={inputChange1}
           /> 
         </label>
         <label>Volunteer
@@ -201,7 +246,7 @@ return(
           type="radio" 
           value="volunteer" 
           name="roles" 
-          onChange={handleChange} 
+          onChange={inputChange1} 
           />
         </label>
         <label>Administrator
@@ -209,12 +254,12 @@ return(
           type="radio" 
           value="admin" 
           name="roles" 
-          onChange={handleChange} 
+          onChange={inputChange1} 
           />
         </label>
       </InputDiv>
       <LoginButton>
-        <button onClick={login}>Log In</button>
+        <button className="login" disabled={disabled1} onClick={login}>Log In</button>
       </LoginButton>
       <br />
         <ButtonStyled>

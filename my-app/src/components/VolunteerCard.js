@@ -6,6 +6,7 @@ const CardContainer = styled.div`
   border-radius: 10px;  
   border: 2px solid ${(props) => props.theme.black};
   padding: 2%;
+  margin: 1%;
   color: ${(props) => props.theme.secondaryColor}; 
   background-color: ${(props) => props.theme.white};
   display: flex;
@@ -14,15 +15,22 @@ const CardContainer = styled.div`
 `;
 
 const UsernameTitle = styled.h2`
-font-size: 2em;
+font-size: 1.4em;
+margin: 0;
+padding-bottom: 4%;
+font-weight: 700;
 `;
 
 const CountryTitle = styled.h3`
-font-size: 1.4em;
+font-size: 1.1em;
+margin: 0;
+padding-bottom: 4%;
 `;
 
 const AvailabilityTitle = styled.h4`
-font-size: 1.1em;
+font-size: 1em;
+margin: 0;
+padding-bottom: 4%;
 `;
 
 function VolunteerCard(props){

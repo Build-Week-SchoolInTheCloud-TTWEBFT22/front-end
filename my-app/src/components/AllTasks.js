@@ -14,14 +14,15 @@ const TaskContainer = styled.div`
 
 const TaskTitle = styled.p`  
   font-size: 1.5em;
-  div{
-    padding: 2%;
-    width: 150px;
-    height: 150px;
-    text-align: center;
-    vertical-align: center;
-    font-weight: 500;
-  }
+`;
+
+const TaskDiv = styled.div`
+  padding: 2%;
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  vertical-align: center;
+  font-weight: 500;
 `;
 
 function AllTasks(props){
@@ -29,7 +30,9 @@ function AllTasks(props){
       return (
         <div>
         <TaskContainer className='alltasks container'>
-          <TaskTitle><div>{description}</div></TaskTitle>
+          <TaskTitle>
+            <TaskDiv>{description}</TaskDiv>
+            </TaskTitle>
         </TaskContainer>
         </div>
       )
