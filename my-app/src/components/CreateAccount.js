@@ -121,7 +121,7 @@ export default function CreateAccount(props) {
           console.log(res.data);
           localStorage.setItem("token", res.data.access_token);
           setFormValues(initialFormValues);
-          history.push("/login");
+          history.push("/");
         })
         .catch((err) => console.log(err))
       } else {
@@ -130,7 +130,7 @@ export default function CreateAccount(props) {
         .then((res) => {
           localStorage.setItem("token", res.data.access_token);
           setFormValues(initialFormValues);
-          history.push("/login");
+          history.push("/");
           console.log(res.data);
         })
         .catch((err) => console.log(err))

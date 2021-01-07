@@ -40,7 +40,7 @@ export default function Logout() {
     const history = useHistory();
     
     const home = (e) => {
-        history.push('/login')
+        history.push('/')
       }
 
     return(

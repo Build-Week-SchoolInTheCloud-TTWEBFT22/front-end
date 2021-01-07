@@ -26,7 +26,7 @@ return(
         <Route path='/student' component={Student} />
         <Route path='/volunteer' component={Volunteer} />
         <Route path='/logout' component={Logout} />
-        <Route path ='/login' component={Login} />
+        <Route path ='/' component={Login} />
         </Switch>
     </HomeWrapper>
 )

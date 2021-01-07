@@ -1,6 +1,6 @@
 describe("Cloud App", () => {
     beforeEach(() => {
-        cy.visit("http://localhost:3000/login")
+        cy.visit("http://localhost:3000")
     });
 
     const usernameInput = () => cy.get('input[name="username"]');
