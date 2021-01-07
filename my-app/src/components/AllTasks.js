@@ -2,13 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 const TaskContainer = styled.div`  
-  width: 100%;
-  margin: 2%;
+  width: 20%;
+  height: 50%;
+  margin: 1%;
   border-radius: 10px;  
   border: 2px solid ${(props) => props.theme.black};
   padding: 2%;
   color: ${(props) => props.theme.secondaryColor}; 
-  background-color: ${(props) => props.theme.white};
+  background-color: ${(props) => props.theme.tertiaryColor};
 `;
 
 const TaskTitle = styled.p`  
@@ -16,9 +17,7 @@ const TaskTitle = styled.p`
 `;
 
 const TaskDiv = styled.div`
-  padding: 2%;
-  width: 150px;
-  height: 150px;
+  padding: 1%;
   text-align: center;
   vertical-align: center;
   font-weight: 500;
@@ -27,13 +26,11 @@ const TaskDiv = styled.div`
 function AllTasks(props){
   const {description} = props;
     return (
-      <div>
         <TaskContainer className='alltasks container'>
           <TaskTitle>
             <TaskDiv>{description}</TaskDiv>
           </TaskTitle>
         </TaskContainer>
-      </div>
     )
   }
 export default AllTasks;
