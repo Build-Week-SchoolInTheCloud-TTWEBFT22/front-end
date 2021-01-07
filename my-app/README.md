@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# ☝️ Proposal
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+* What problem does your app solve?
+The goal of this app is to connect volunteers with students. The aim is to help close the achievement gap by connecting students with available, qualified volunteer mentors. The first piece of this app will be creating the three main user types, and allowing an admin to create a training checklist for new volunteers.
+Match students with volunteer
 
-## Available Scripts
+* Be as specific as possible; how does your app solve the problem?
+It enables students and volunteers to easily connect up with one another.
 
-In the project directory, you can run:
+* What is the mission statement?
+close the achievement gap by connecting students with available, qualified, volunteer mentors
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#💡 Features
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+* What features are required for your minimum viable product?
+### Unit 2:
+* functional components/dynamic functionality in app
+* useState, useEffect and array methods
+* GET request, Route management,
+* Validation
+* Home page with signup features for Admin, Students, Volunteers
+* Routed to each page
+* Student page search function to match them with volunteers based on location and time
+* Pages needed to have theme incorporated
 
-### `npm test`
+* What features may you wish to put in a future release?
+Ability for Students to request a certain kind of tutoring
+Ability for Admin to set attendance requirements for meeting with a tutor
+Ability for all users to keep track of time spent in tutoring
+Ability for grades to be sent between volunteers / students
+Ability for Admin to see progress
+Ability for Students to rate Volunteers and provide feedback 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* What do the top 3 similar apps do for their users?
+https://www.vipkid.com/teach
+https://www.tutor.com/
+https://www.ratemyprofessors.com/
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# 🛠 Frameworks - Libraries
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* What 3rd party frameworks/libraries are you considering using?
+React, Axios, React Router, React Router Dom, Yup, Styled Components, Java, Java Spring, H2 Database, JPA, PostgreSQL
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* Do the APIs you need require you to contact them to gain access?
+No we are building our own
 
-### `npm run eject`
+* Are you required to pay to use said API(s)?
+No 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# 🎯 Target Audience
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* Who is your target audience? Be specific.
+Students, Volunteers who love to teach
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+* What feedback have you gotten from potential users?
+None
 
-## Learn More
+* Have you validated this problem and your solution with a target audience? Describe how.
+No, but we would do market research and focus groups to ascertain if this product is a viable undertaking
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# 🔑 Prototype Key Feature(s)
 
-### Code Splitting
+* How long do you think it will take to implement these features?
+1 WEEK!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* Do you anticipate working on stretch functionality after completion of a Minimal Viable Product?
+If there is time sure!
