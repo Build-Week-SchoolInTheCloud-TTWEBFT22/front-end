@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 const TaskContainer = styled.div`  
   width: 100%;
+  /* height: 80%; */
+  margin: 2%;
   border-radius: 10px;  
   border: 2px solid ${(props) => props.theme.black};
   padding: 2%;
@@ -10,8 +12,16 @@ const TaskContainer = styled.div`
   background-color: ${(props) => props.theme.white};
 `;
 
-const TaskTitle = styled.h2`  
+const TaskTitle = styled.p`  
   font-size: 1.5em;
+  div{
+    padding: 2%;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    vertical-align: center;
+    font-weight: 500;
+  }
 `;
 
 function AllTasks(props){
@@ -19,7 +29,7 @@ function AllTasks(props){
       return (
         <div>
         <TaskContainer className='alltasks container'>
-          <TaskTitle>{description}</TaskTitle>
+          <TaskTitle><div>{description}</div></TaskTitle>
         </TaskContainer>
         </div>
       )

@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 import TabletKid from '../images/TabletKid.png';
+import * as yup from 'yup';
+import schema from './validation/formSchema';
 
 const TabletChild = styled.img`
   height: 40%;
@@ -55,16 +57,53 @@ const LoginButton = styled.div`
     transition: all 0.5s ease-in-out;
     }
 `;
+
 const initialFormValues = {
     username: '',
     primaryemail: '',
     password: '', 
   }
 
+  const initialFormErrors = {
+    username: '',
+    primaryemail: '',
+    password: '', 
+  }
+
+  const initialDisabled = true;
+
 export default function CreateAccount(props) {
   const [formValues, setFormValues] = useState(initialFormValues);
+  const [formErrors, setFormErrors] = useState(initialFormErrors);
+  const [disabled, setDisabled] = useState(initialDisabled);
   const history = useHistory();
-    
+ 
+  const inputChange = (e) => {
+    yup.reach(schema, e.target.name)
+    .validate(e.target.value)
+    .then(() => {
+      setFormErrors({
+        ...formErrors, 
+        [e.target.name]: '',
+      })
+    })
+    .catch((err) => {
+      setFormErrors({
+        ...formErrors,
+        [e.target.name]: err.errors[0],
+      })
+    })
+    setFormValues({
+      ...formValues, [e.target.name]: e.target.value,
+    })
+  }
+
+  useEffect(() => {
+    schema.isValid(formValues).then((valid) => {
+      setDisabled(!valid);
+    })
+  }, [formValues]);
+
   const formSubmit = (e) => {
     e.preventDefault(); 
     const newUser = {
@@ -95,11 +134,6 @@ export default function CreateAccount(props) {
         .catch((err) => console.log(err))
       }
     }
-    
-    const onChange = (e) => 
-    setFormValues({
-      ...formValues, [e.target.name]: e.target.value,
-    });
 
     return(
       <div>
@@ -107,6 +141,11 @@ export default function CreateAccount(props) {
           <TitleCreate>Create Your Account</TitleCreate>
         </header>
         <form onSubmit={formSubmit}>
+          <div className="errors" style={{color: 'white'}}>
+              <div>{formErrors.username}</div>
+              <div>{formErrors.primaryemail}</div>
+              <div>{formErrors.password}</div>
+          </div>
           <CreateDiv>
           <TabletChild src={TabletKid} alt="handsontablet" />
             <BorderDiv>
@@ -116,7 +155,7 @@ export default function CreateAccount(props) {
               type="text"
               name="username"
               value={formValues.username}
-              onChange={onChange}
+              onChange={inputChange}
             />
           </label>
           <label>Email:
@@ -124,7 +163,7 @@ export default function CreateAccount(props) {
               type="email"
               name="primaryemail"
               value={formValues.primaryemail}
-              onChange={onChange}
+              onChange={inputChange}
             />
           </label>
           <label>Password:
@@ -132,7 +171,7 @@ export default function CreateAccount(props) {
             type="password"
             name="password"
             value={formValues.password}
-            onChange={onChange}
+            onChange={inputChange}
             />
           </label>
           <label>Student
@@ -140,18 +179,18 @@ export default function CreateAccount(props) {
           type="radio" 
           value="student" 
           name="roles" 
-          onChange={onChange}/> 
+          onChange={inputChange}/> 
           </label>
           <label>Volunteer
           <input 
           type="radio" 
           value="volunteer" 
           name="roles" 
-          onChange={onChange} />
+          onChange={inputChange} />
           </label>
           </SmallerDiv>
           <LoginButton>
-            <button className="createaccount">Create</button>
+            <button className="createaccount" disabled={disabled}>Create</button>
           </LoginButton>
         </BorderDiv>
       </CreateDiv>

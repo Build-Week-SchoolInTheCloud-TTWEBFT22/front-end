@@ -113,7 +113,7 @@ export default function Student (props) {
           <AdminTitle>Welcome Admin Team!</AdminTitle>
           <TabletImage src={LoginPageImage1} alt="tabletinhand" />
         </AdminFirstFlex>
-        <AdminTasks>This is a list of all of the available tasks:</AdminTasks>
+        <AdminTasks>All Available tasks:</AdminTasks>
         <CardFlex3>
         {allTasks.length > 0 ? 
           allTasks.map(task => {
@@ -121,7 +121,7 @@ export default function Student (props) {
           }) : null 
         }
         </CardFlex3>
-        <AdminVolunteers>This is a list of all the volunteers:</AdminVolunteers>
+        <AdminVolunteers>All Volunteers:</AdminVolunteers>
         <CardFlex4>
          {selectVolunteer.length > 0 ? 
           selectVolunteer.map(volunteer => {

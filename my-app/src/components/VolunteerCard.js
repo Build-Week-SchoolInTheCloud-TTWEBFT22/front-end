@@ -32,9 +32,8 @@ function VolunteerCard(props){
               <UsernameTitle>{username}</UsernameTitle>
               <CountryTitle>{country}</CountryTitle>
               <AvailabilityTitle>{availability}</AvailabilityTitle>
-              {tasks > 0 ?
-              tasks.map(task => {
-              return <div>{task.description}</div> }) : null}
+              {tasks.map(task => {
+              return <div>{task.description}</div> })}
           </CardContainer>
         )
     }

@@ -58,7 +58,7 @@ const InputDiv = styled.div`
   flex-direction: column;
   align-items: flex-start;
   font-size: 1.1em;
-  padding: 1%;
+  padding: 4%;
   color: ${(props) => props.theme.white};
 `;
 
