@@ -8,28 +8,31 @@ import styled from 'styled-components';
 
 const StudentImageThree = styled.img`
  height: 50%;
-  width: 40%;
-`
+  width: 25%;
+  border-radius: 10px; 
+`;
+
 const StudentImageTwo = styled.img`
   height: 80%;
   width: 40%;
+  border-radius: 10px; 
+`;
 
-`
 const CardFlex = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 2%;
-
-`
+`;
 
 const StudentTitle = styled.h1`
   text-align: center;
   font-size: 3em;
   color: ${(props) => props.theme.white};
-  font-family: 'Roboto', sans-serif;
-`
+  
+`;
+
 const FirstDiv = styled.div`
   display: flex;
   flex-direction: row;
@@ -38,10 +41,12 @@ const FirstDiv = styled.div`
 
 const SubTitleChange = styled.h2`
   padding-top: 10%;
+  font-size: 2em;
 `;
 
 const SecondStepTitle = styled.h2`
-  padding-top: 10%;
+  padding-top: 20%;
+  font-size: 2em;
 `;
 
 const SecondStepDiv = styled.div`
@@ -68,6 +73,7 @@ const LogOutButton1 = styled.div`
     transition: all 0.5s ease-in-out;
     }
 `;
+
 export default function Student (props) {
   const [findVolunteer, setFindVolunteer] = useState({});
   const history = useHistory();
@@ -111,7 +117,7 @@ export default function Student (props) {
                     return <VolunteerCard key={volunteer.userid} username={volunteer.username} country={volunteer.country} availability={volunteer.availability} tasks={volunteer.usertasks}/> 
                   }) : null 
                 }
-                </CardFlex>
+            </CardFlex>
             <SecondStepDiv>
               <div>
                 <SecondStepTitle>Step 2: Let's Get Ready to Study</SecondStepTitle>

@@ -13,12 +13,6 @@ const CardContainer = styled.div`
   
 `;
 
-const CardContainterDiv = styled.div`
-/* display: flex; */
-/* justify-content: space-around; */
-
-`;
-
 const UsernameTitle = styled.h2`
 font-size: 2em;
 `;
@@ -35,17 +29,16 @@ function VolunteerCard(props){
   const { username, country, availability, tasks } = props;
       return (
           <CardContainer>
-            <CardContainterDiv>
               <UsernameTitle>{username}</UsernameTitle>
               <CountryTitle>{country}</CountryTitle>
               <AvailabilityTitle>{availability}</AvailabilityTitle>
-              {tasks.map(task => {
-              return <div>{task.description}</div> })}
-              </CardContainterDiv>
+              {tasks > 0 ?
+              tasks.map(task => {
+              return <div>{task.description}</div> }) : null}
           </CardContainer>
         )
     }
 
     export default VolunteerCard;
 
-   
+    

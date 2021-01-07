@@ -8,11 +8,15 @@ import kidImage1  from '../images/kidImage1.png';
 const HeaderImage = styled.img`
   height: 100%;
   width: 40%;
+  border-radius: 10px; 
+  
 `;
 
 const KidImage = styled.img`
   height: 100%;
   width: 40%;
+  border-radius: 10px; 
+  
 `;
 
 const VipkidFlex = styled.div`
@@ -35,7 +39,7 @@ const HeaderDiv = styled.div`
 const ImageDiv = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-around;
 `;
 
 const Title = styled.h1`
@@ -66,6 +70,7 @@ const FacebookLike = styled.div`
     color: ${(props) =>  props.theme.secondaryColor};
     padding: 2%2%;
     border: 2px solid ${(props) => props.theme.black};
+    border-radius: 10px; 
 `;
 
 const ButtonStyled = styled.div`

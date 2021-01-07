@@ -7,7 +7,7 @@ import TabletKid from '../images/TabletKid.png';
 const TabletChild = styled.img`
   height: 40%;
   width: 50%;
-  padding: 2%2%;
+  border-radius: 10px; 
 `;
 
 const TitleCreate = styled.h1`
@@ -19,6 +19,7 @@ const TitleCreate = styled.h1`
 const BorderDiv = styled.div`
   border: 2px solid ${(props) => props.theme.black};
   padding: 3%;
+  border-radius: 10px; 
 `;
   
 const SmallerDiv = styled.div`
