@@ -3,6 +3,13 @@ import { useHistory } from 'react-router-dom';
 import { axiosWithAuth } from './axiosWithAuth';
 import AllTasks from './AllTasks';
 import VolunteerCard from './VolunteerCard';
+import styled from 'styled-components';
+import LoginPageImage1 from '../images/LoginPageImage1.png';
+
+const TabletImage = styled.img`
+  height: 200px;
+  width: 200px;
+`
 
 export default function Student (props) {
   const [allTasks, setAllTasks] = useState({});
@@ -47,7 +54,7 @@ export default function Student (props) {
         <header>
           <h1>Admin Page</h1>
         </header>
-
+        <TabletImage src={LoginPageImage1} alt="tabletinhand" />
         {allTasks.length > 0 ? 
           allTasks.map(task => {
             return <AllTasks key={task.taskid} description={task.description} /> 
@@ -65,13 +72,16 @@ export default function Student (props) {
 }
 
 
-    // useEffect(() => {
-    //   axiosWithAuth()
-    //     .get("/tasks/task/{id}")
-    //     .then((res) => {
-    //       console.log(res.data);
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //           })
-    //   }, [id]);
+      // axios
+      //   .get("/tasks/task", {
+      //   params: {
+      //     taskid: 10
+      //   }
+      // })
+      //   .then((res) => {
+      //     console.log(res.data);
+      //     setAssignedTasks(res.data)
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   })

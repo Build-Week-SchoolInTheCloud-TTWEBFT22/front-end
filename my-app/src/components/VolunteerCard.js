@@ -1,35 +1,51 @@
-import React, { useEffect, useState, useRef } from 'react';
-import Button from './button';
-import DropDownCard from './dropDownCard';
+import React from 'react';
+import styled from 'styled-components';
+
+const CardContainer = styled.div`  
+  width: 25%;
+  border-radius: 10px;  
+  border: 2px solid ${(props) => props.theme.black};
+  padding: 2%;
+  color: ${(props) => props.theme.secondaryColor}; 
+  background-color: ${(props) => props.theme.white};
+  display: flex;
+  flex-direction: column;
+  
+`;
+
+const CardContainterDiv = styled.div`
+/* display: flex; */
+/* justify-content: space-around; */
+
+`;
+
+const UsernameTitle = styled.h2`
+font-size: 2em;
+`;
+
+const CountryTitle = styled.h3`
+font-size: 1.4em;
+`;
+
+const AvailabilityTitle = styled.h4`
+font-size: 1.1em;
+`;
 
 function VolunteerCard(props){
-  const {username} = props;
-
-  const ButtonWithDropDownCmp = () => {
-    const [open, setOpen] = useState(false);
-    const drop = useRef(null);
-
-    function handleClick(e) { 
-      
-      if(e.target.closest(`${drop.current.className}`) && open)
-      setOpen(false)
-    }
-    useEffect(() => {
-      document.addEventListener("click", handleClick);
-      return () => {
-        document.removeEventListener("click", handleClick);
-      }
-    })
+  const { username, country, availability, tasks } = props;
       return (
-        <div className='dropdown' ref={drop} style={{position: 'relative', margin: '16px'}}>
-          <Button onClick={()=> setOpen(open => !open)} />
-          {open && <DropDownCard data={username} />}
-          {/* <h2>This is the volunteer's username: {username}</h2>  */}
-
-        </div>
-      )
+          <CardContainer>
+            <CardContainterDiv>
+              <UsernameTitle>{username}</UsernameTitle>
+              <CountryTitle>{country}</CountryTitle>
+              <AvailabilityTitle>{availability}</AvailabilityTitle>
+              {tasks.map(task => {
+              return <div>{task.description}</div> })}
+              </CardContainterDiv>
+          </CardContainer>
+        )
     }
-  }
+
     export default VolunteerCard;
 
-  
+   

@@ -7,15 +7,13 @@ import Admin from './components/Admin';
 import Volunteer from './components/Volunteer';
 import CreateAccount from './components/CreateAccount';
 import Logout from './components/Logout';
-import './App.css';
+import "./index.css";
+
 
 const HomeWrapper = styled.div`
- text-align: center;
   cursor: pointer;
   background-color: ${(props) => props.theme.primaryColor};
   color: ${(props) => props.theme.white};
-  width: 100%;
-  height: 100%;
   padding: 4%;
 `; 
 
@@ -28,7 +26,7 @@ return(
         <Route path='/student' component={Student} />
         <Route path='/volunteer' component={Volunteer} />
         <Route path='/logout' component={Logout} />
-        <Route path = '/login' component={Login} />
+        <Route path ='/login' component={Login} />
         </Switch>
     </HomeWrapper>
 )

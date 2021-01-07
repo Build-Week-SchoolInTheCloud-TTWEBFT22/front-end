@@ -2,17 +2,24 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import AllTasks from './AllTasks';
 import axios from 'axios';
-// import { createPopper } from '@popperjs/core';
-// import AllTasks from './AllTasks';
-// import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-import AssignedTasks from './AssignedTasks';
 import { axiosWithAuth } from './axiosWithAuth';
+import teacherImage3 from '../images/teacherImage3.png';
+import styled from 'styled-components';
+import teacher2 from '../images/teacher2.png';
+
+const TeacherImageThree = styled.img`
+  height: 200px;
+  width: 200px;
+`
+
+const TeacherImageTwo = styled.img`
+  height: 200px;
+  width: 200px;
+`
+
 
 export default function Student (props) {
     const [findAllTasks, setFindAllTasks] = useState({});
-    // const [assignedTasks, setAssignedTasks] = useState({});
-    // const [dropdownOpen, setOpen] = useState(false);
-    // const toggle = () => setOpen(!dropdownOpen);
     const history = useHistory();
     
     const logOut1 = (e) => {
@@ -36,7 +43,27 @@ export default function Student (props) {
               })
       }, []);
 
-      // axios
+    return(
+        <div>
+        <header>
+          <h1>Volunteer Mentor Tasks</h1>
+          <TeacherImageThree src={teacherImage3} alt="happyteacher"/>
+        </header>
+        <select  name="button">
+          <option value="">--Select a Size--</option>
+          <option value="small">{findAllTasks.length > 0 ? 
+          findAllTasks.map(task => {
+            return <AllTasks key={task.taskid} description={task.description} /> 
+          }) : null 
+        }</option>
+        </select>
+        <TeacherImageTwo src={teacher2} alt="happyteacher" />
+        <footer>
+          <button className="logout" onClick={logOut1}>Log Out</button>
+        </footer>
+        </div>)
+}
+ // axios
       //   .get("/tasks/task", {
       //   params: {
       //     taskid: 10
@@ -50,36 +77,3 @@ export default function Student (props) {
       //     console.log(err);
       //   })
       
-
-    return(
-        <div>
-        <header>
-          <h1>Volunteer Mentor Tasks</h1>
-        </header>
-        {/* <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
-          <DropdownToggle caret>
-            Button Dropdown
-          </DropdownToggle>
-          <DropdownMenu>
-            <DropdownItem>Header</DropdownItem>
-            <DropdownItem >Action</DropdownItem>
-            <DropdownItem>Another Action</DropdownItem>
-            <DropdownItem>Another Action</DropdownItem>
-          </DropdownMenu>
-        </ButtonDropdown> */}
-        {findAllTasks.length > 0 ? 
-          findAllTasks.map(task => {
-            return <AllTasks key={task.taskid} description={task.description} /> 
-          }) : null 
-        }
-        {/* {assignedTasks.length > 0 ? 
-          assignedTasks.map(task => {
-            return <AssignedTasks key={task.taskid} description={task.description} /> 
-          }) : null 
-        } */}
-        
-        <footer>
-          <button className="logout" onClick={logOut1}>Log Out</button>
-        </footer>
-        </div>)
-}

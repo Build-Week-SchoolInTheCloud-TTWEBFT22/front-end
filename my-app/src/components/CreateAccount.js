@@ -2,12 +2,25 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
+import TabletKid from '../images/TabletKid.png';
 
-const Title = styled.h1`
+const TabletChild = styled.img`
+  height: 40%;
+  width: 50%;
+  padding: 2%2%;
+`;
+
+const TitleCreate = styled.h1`
   font-size: 3em;
+  text-align: center;
   color: ${(props) => props.theme.white};
 `;
 
+const BorderDiv = styled.div`
+  border: 2px solid ${(props) => props.theme.black};
+  padding: 3%;
+`;
+  
 const SmallerDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -16,15 +29,15 @@ const SmallerDiv = styled.div`
   padding: 3%;
   color: ${(props) => props.theme.white};
 `;
+
 const CreateDiv = styled.div`
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    justify-content: space-evenly;
     font-size: 1.5em;
-    color: ${(props) =>  props.theme.secondaryColor};
     padding: 2%2%;
-    border: 2px solid ${(props) => props.theme.black};
 `;
+
 const LoginButton = styled.div`
     button{
         background: ${(props) => props.theme.black};
@@ -34,14 +47,13 @@ const LoginButton = styled.div`
         margin: 0 1em;
         padding: 0.25em 4em;
         color: ${(props) => props.theme.tertiaryColor};
-
     &:hover {
       transform: scale(1.1);
       transition: all 0.5s ease-in-out;
     }
     transition: all 0.5s ease-in-out;
     }
-`
+`;
 const initialFormValues = {
     username: '',
     primaryemail: '',
@@ -68,7 +80,6 @@ export default function CreateAccount(props) {
           localStorage.setItem("token", res.data.access_token);
           setFormValues(initialFormValues);
           history.push("/login");
-          
         })
         .catch((err) => console.log(err))
       } else {
@@ -92,10 +103,12 @@ export default function CreateAccount(props) {
     return(
       <div>
         <header>
-          <Title>Create Your Account</Title>
+          <TitleCreate>Create Your Account</TitleCreate>
         </header>
         <form onSubmit={formSubmit}>
           <CreateDiv>
+          <TabletChild src={TabletKid} alt="handsontablet" />
+            <BorderDiv>
             <SmallerDiv>
           <label>Username:
             <input
@@ -137,10 +150,11 @@ export default function CreateAccount(props) {
           </label>
           </SmallerDiv>
           <LoginButton>
-          <button className="createaccount">Create</button>
+            <button className="createaccount">Create</button>
           </LoginButton>
-          </CreateDiv>
-        </form>
-      </div>
-      )
-    }
+        </BorderDiv>
+      </CreateDiv>
+    </form>
+  </div>
+)
+}

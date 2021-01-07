@@ -1,10 +1,46 @@
 import React, { useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
+import teacherImage1 from '../images/teacherImage1.png';
+import kidImage1  from '../images/kidImage1.png';
+
+const HeaderImage = styled.img`
+  height: 100%;
+  width: 40%;
+`;
+
+const KidImage = styled.img`
+  height: 100%;
+  width: 40%;
+`;
+
+const VipkidFlex = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const TopDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+`;
+
+const HeaderDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+`;
+
+const ImageDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+`;
 
 const Title = styled.h1`
   font-size: 3em;
+  margin: 0;
   color: ${(props) => props.theme.white};
 `;
 
@@ -16,11 +52,12 @@ const MissionStatement = styled.p`
 const InputDiv = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  font-size: 1.4em;
-  padding: 3%;
+  align-items: flex-start;
+  font-size: 1.1em;
+  padding: 1%;
   color: ${(props) => props.theme.white};
 `;
+
 const FacebookLike = styled.div`
     display: flex;
     flex-direction: column;
@@ -40,14 +77,13 @@ const ButtonStyled = styled.div`
         margin: 0 1em;
         padding: 0.25em 1em;
         color: ${(props) => props.theme.primaryColor};
-
     &:hover {
       transform: scale(1.1);
       transition: all 0.5s ease-in-out;
     }
     transition: all 0.5s ease-in-out;
     }
-`
+`;
 const LoginButton = styled.div`
     button{
         background: ${(props) => props.theme.black};
@@ -55,16 +91,15 @@ const LoginButton = styled.div`
         border-radius: 3px;
         border: 2px solid ${(props) => props.theme.black};
         margin: 0 1em;
-        padding: 0.25em 4em;
-        color: ${(props) => props.theme.tertiaryColor};
-
+        padding: 0.25em 1em;
+        color: ${(props) => props.theme.tertiaryColor}; 
     &:hover {
       transform: scale(1.1);
       transition: all 0.5s ease-in-out;
     }
     transition: all 0.5s ease-in-out;
     }
-`
+`;
 
 const Login = (props) => {
   const [credentials, setCredentials] = useState({username: "", password: ""});
@@ -117,11 +152,18 @@ const createNew = (e) => {
   history.push('/create')
 }
 return(
-  <div>
-    <header>
+  <VipkidFlex>
+    <TopDiv>
+      <HeaderDiv>
       <Title>School in the Cloud</Title>
       <MissionStatement>Our mission is to connect students with available, qualified volunteer mentors.</MissionStatement>
-    </header>
+      </HeaderDiv>
+      <ImageDiv>
+      <HeaderImage src={teacherImage1} alt="teacher1" />
+      <KidImage src={kidImage1} alt="kid1"/>
+      </ImageDiv>
+      </TopDiv>
+      <div>
     <form onSubmit={login}>
       <FacebookLike>
         <InputDiv>
@@ -170,14 +212,14 @@ return(
         <button onClick={login}>Log In</button>
       </LoginButton>
       <br />
-      <Link to={'/create'}>
         <ButtonStyled>
           <button className="create" onClick={createNew}>Create New Account</button>
         </ButtonStyled>
-      </Link>
+      
     </FacebookLike>
   </form>
-</div>
+  </div>
+</VipkidFlex>
 )
 }
 export default Login;

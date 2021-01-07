@@ -7,5 +7,6 @@ export default {
     breakpoints:{
         mobile: '(max-width: 550px)',
         tablet: '(max-width: 800px)',
+        desktop: '(max-width: 1400px)',
     }
 }

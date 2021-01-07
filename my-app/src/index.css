@@ -11,3 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital@1&display=swap" rel="stylesheet');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet');
+
+h1{
+    font-family: 'Crimson Text', serif;
+    
+}
+h2, h3, h4{
+    font-family: 'Crimson Text', serif;
+}
+
+button{
+  font-family: 'Crimson Text', serif;
+}
+
+
+p{
+    font-family: 'Roboto', sans-serif;
+}
