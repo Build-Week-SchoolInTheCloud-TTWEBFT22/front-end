@@ -13,7 +13,7 @@ describe("Cloud App", () => {
 
     it("sanity test", () => {
         expect(1 + 2).to.equal(3);
-    expect(2 + 2).not.to.equal(5);
+        expect(2 + 2).not.to.equal(5);
     });
 
     it("can type in the inputs", () => {
@@ -21,7 +21,7 @@ describe("Cloud App", () => {
           .should("have.value", "")
           .type("SlothMode")
           .should("have.value", "SlothMode");
-          passwordInput()
+        passwordInput()
           .should("have.value", "")
           .type("saltypopcorn")
           .should("have.value", "saltypopcorn");
@@ -30,10 +30,9 @@ describe("Cloud App", () => {
     it("the proper elements are showing on the screeen", () => {
         loginButton().should("exist");
         createButton().should("exist");
-
       });
 
-      it("login button disabled until both inputs filled out", () => {
+    it("login button disabled with both inputs filled out", () => {
         loginButton().should("be.disabled");
         usernameInput().type("USERNAME INPUT");
         loginButton().should("be.disabled");
@@ -42,7 +41,7 @@ describe("Cloud App", () => {
         loginButton().should("be.disabled");
       });
 
-      it("login button works with student", () => {
+    it("login button works with student", () => {
         loginButton().should("be.disabled");
         usernameInput().type("USERNAME INPUT");
         passwordInput().type("PASSWORD INPUT");

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const TaskContainer = styled.div`  
   width: 100%;
-  /* height: 80%; */
   margin: 2%;
   border-radius: 10px;  
   border: 2px solid ${(props) => props.theme.black};
@@ -27,14 +26,14 @@ const TaskDiv = styled.div`
 
 function AllTasks(props){
   const {description} = props;
-      return (
-        <div>
+    return (
+      <div>
         <TaskContainer className='alltasks container'>
           <TaskTitle>
             <TaskDiv>{description}</TaskDiv>
-            </TaskTitle>
+          </TaskTitle>
         </TaskContainer>
-        </div>
-      )
-    }
-    export default AllTasks;
+      </div>
+    )
+  }
+export default AllTasks;

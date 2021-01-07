@@ -11,7 +11,7 @@ It enables students and volunteers to easily connect up with one another.
 close the achievement gap by connecting students with available, qualified, volunteer mentors
 
 
-#💡 Features
+# 💡 Features
 
 * What features are required for your minimum viable product?
 ### Unit 2:

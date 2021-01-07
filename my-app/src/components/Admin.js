@@ -54,13 +54,13 @@ const LogOutAdmin = styled.div`
  text-align: center;
  padding: 4%4%;
     button{
-        background: ${(props) => props.theme.black};
-        font-size: 1.3em;
-        border-radius: 3px;
-        border: 2px solid ${(props) => props.theme.black};
-        margin: 0 1em;
-        padding: 0.25em 1em;
-        color: ${(props) => props.theme.tertiaryColor}; 
+      background: ${(props) => props.theme.black};
+      font-size: 1.3em;
+      border-radius: 3px;
+      border: 2px solid ${(props) => props.theme.black};
+      margin: 0 1em;
+      padding: 0.25em 1em;
+      color: ${(props) => props.theme.tertiaryColor}; 
     &:hover {
       transform: scale(1.1);
       transition: all 0.5s ease-in-out;
@@ -114,23 +114,24 @@ export default function Student (props) {
           <TabletImage src={LoginPageImage1} alt="tabletinhand" />
         </AdminFirstFlex>
         <AdminTasks>All Available tasks:</AdminTasks>
-        <CardFlex3>
-        {allTasks.length > 0 ? 
-          allTasks.map(task => {
-            return <AllTasks key={task.taskid} description={task.description} /> 
-          }) : null 
-        }
-        </CardFlex3>
+          <CardFlex3>
+            {allTasks.length > 0 ? 
+              allTasks.map(task => {
+                return <AllTasks key={task.taskid} description={task.description} /> 
+              }) : null 
+            }
+          </CardFlex3>
         <AdminVolunteers>All Volunteers:</AdminVolunteers>
-        <CardFlex4>
-         {selectVolunteer.length > 0 ? 
-          selectVolunteer.map(volunteer => {
-            return <VolunteerCard key={volunteer.userid} username={volunteer.username} country={volunteer.country} availability={volunteer.availability} tasks={volunteer.usertasks} /> 
-          }) : null 
-        }
-        </CardFlex4>
+          <CardFlex4>
+            {selectVolunteer.length > 0 ? 
+              selectVolunteer.map(volunteer => {
+                return <VolunteerCard key={volunteer.userid} username={volunteer.username} country={volunteer.country} availability={volunteer.availability} tasks={volunteer.usertasks} /> 
+              }) : null 
+            }
+          </CardFlex4>
         <LogOutAdmin>
-            <button className="logout" onClick={logOut2}>Log Out</button>
+          <button className="logout" onClick={logOut2}>Log Out</button>
         </LogOutAdmin>
-        </div>)
+      </div>
+    )
 }

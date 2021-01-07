@@ -75,13 +75,13 @@ const FacebookLike = styled.div`
 
 const ButtonStyled = styled.div`
     button{
-        background: ${(props) => props.theme.white};
-        font-size: 1.3em;
-        border-radius: 3px;
-        border: 2px solid ${(props) => props.theme.white};
-        margin: 0 1em;
-        padding: 0.25em 1em;
-        color: ${(props) => props.theme.primaryColor};
+      background: ${(props) => props.theme.white};
+      font-size: 1.3em;
+      border-radius: 3px;
+      border: 2px solid ${(props) => props.theme.white};
+      margin: 0 1em;
+      padding: 0.25em 1em;
+      color: ${(props) => props.theme.primaryColor};
     &:hover {
       transform: scale(1.1);
       transition: all 0.5s ease-in-out;
@@ -89,15 +89,16 @@ const ButtonStyled = styled.div`
     transition: all 0.5s ease-in-out;
     }
 `;
+
 const LoginButton = styled.div`
     button{
-        background: ${(props) => props.theme.black};
-        font-size: 1.3em;
-        border-radius: 3px;
-        border: 2px solid ${(props) => props.theme.black};
-        margin: 0 1em;
-        padding: 0.25em 1em;
-        color: ${(props) => props.theme.tertiaryColor}; 
+      background: ${(props) => props.theme.black};
+      font-size: 1.3em;
+      border-radius: 3px;
+      border: 2px solid ${(props) => props.theme.black};
+      margin: 0 1em;
+      padding: 0.25em 1em;
+      color: ${(props) => props.theme.tertiaryColor}; 
     &:hover {
       transform: scale(1.1);
       transition: all 0.5s ease-in-out;
@@ -141,9 +142,7 @@ const Login = (props) => {
         ...formErrors1,
         [e.target.name]: err.errors[0],
       })
-    
-    })
-    console.log(e.target.value)
+    }) 
     setCredentials({
       ...credentials, [e.target.name]: e.target.value,
     })
@@ -208,68 +207,67 @@ return(
       <HeaderImage src={teacherImage1} alt="teacher1" />
       <KidImage src={kidImage1} alt="kid1"/>
       </ImageDiv>
-      </TopDiv>
+    </TopDiv>
       <div>
-    <form onSubmit={login}>
-    <div className="errors" style={{color: 'white'}}>
-      <div>{formErrors1.username}</div>
-      <div>{formErrors1.password}</div>
-    </div>
-      <FacebookLike>
-        <InputDiv>
-        <label>Username:
-          <input
-          type="text"
-          name="username"
-          value={credentials.username}
-          onChange={inputChange1}
-          />
-        </label>
-        <label>Password:
-          <input
-          type="password"
-          name="password"
-          value={credentials.password}
-          onChange={inputChange1}
-          />
-        </label>
-        <label>Student
-         <input 
-          type="radio" 
-          value="student" 
-          name="roles" 
-          onChange={inputChange1}
-          /> 
-        </label>
-        <label>Volunteer
-          <input 
-          type="radio" 
-          value="volunteer" 
-          name="roles" 
-          onChange={inputChange1} 
-          />
-        </label>
-        <label>Administrator
-          <input 
-          type="radio" 
-          value="admin" 
-          name="roles" 
-          onChange={inputChange1} 
-          />
-        </label>
-      </InputDiv>
-      <LoginButton>
-        <button className="login" disabled={disabled1} onClick={login}>Log In</button>
-      </LoginButton>
-      <br />
-        <ButtonStyled>
-          <button className="create" onClick={createNew}>Create New Account</button>
-        </ButtonStyled>
-      
-    </FacebookLike>
-  </form>
-  </div>
-</VipkidFlex>
+        <form onSubmit={login}>
+          <div className="errors" style={{color: 'white'}}>
+            <div>{formErrors1.username}</div>
+            <div>{formErrors1.password}</div>
+           </div>
+          <FacebookLike>
+            <InputDiv>
+              <label>Username:
+                <input
+                  type="text"
+                  name="username"
+                  value={credentials.username}
+                  onChange={inputChange1}
+                />
+              </label>
+              <label>Password:
+                <input
+                  type="password"
+                  name="password"
+                  value={credentials.password}
+                  onChange={inputChange1}
+                />
+              </label>
+              <label>Student
+                <input 
+                  type="radio" 
+                  value="student" 
+                  name="roles" 
+                  onChange={inputChange1}
+                /> 
+              </label>
+              <label>Volunteer
+                <input 
+                  type="radio" 
+                  value="volunteer" 
+                  name="roles" 
+                  onChange={inputChange1} 
+                />
+              </label>
+              <label>Administrator
+                <input 
+                  type="radio" 
+                  value="admin" 
+                  name="roles" 
+                  onChange={inputChange1} 
+                />
+              </label>
+            </InputDiv>
+            <LoginButton>
+              <button className="login" disabled={disabled1} onClick={login}>Log In</button>
+            </LoginButton>
+            <br />
+            <ButtonStyled>
+              <button className="create" onClick={createNew}>Create New Account</button>
+            </ButtonStyled>
+          </FacebookLike>
+        </form>
+      </div>
+  </VipkidFlex>
 )
 }
 export default Login;

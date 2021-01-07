@@ -43,13 +43,13 @@ const CreateDiv = styled.div`
 
 const LoginButton = styled.div`
     button{
-        background: ${(props) => props.theme.black};
-        font-size: 1.3em;
-        border-radius: 3px;
-        border: 2px solid ${(props) => props.theme.black};
-        margin: 0 1em;
-        padding: 0.25em 4em;
-        color: ${(props) => props.theme.tertiaryColor};
+      background: ${(props) => props.theme.black};
+      font-size: 1.3em;
+      border-radius: 3px;
+      border: 2px solid ${(props) => props.theme.black};
+      margin: 0 1em;
+      padding: 0.25em 4em;
+      color: ${(props) => props.theme.tertiaryColor};
     &:hover {
       transform: scale(1.1);
       transition: all 0.5s ease-in-out;
@@ -101,7 +101,6 @@ export default function CreateAccount(props) {
   }
 
   useEffect((e) => {
-    e.preventDefault();
     schema.isValid(formValues).then((valid) => {
       setDisabled(!valid);
     })
@@ -152,52 +151,54 @@ export default function CreateAccount(props) {
           <CreateDiv>
           <TabletChild src={TabletKid} alt="handsontablet" />
             <BorderDiv>
-            <SmallerDiv>
-          <label>Username:
-            <input
-              type="text"
-              name="username"
-              value={formValues.username}
-              onChange={inputChange}
-            />
-          </label>
-          <label>Email:
-              <input
-              type="email"
-              name="primaryemail"
-              value={formValues.primaryemail}
-              onChange={inputChange}
-            />
-          </label>
-          <label>Password:
-            <input
-            type="password"
-            name="password"
-            value={formValues.password}
-            onChange={inputChange}
-            />
-          </label>
-          <label>Student
-          <input 
-          type="radio" 
-          value="student" 
-          name="roles" 
-          onChange={inputChange}/> 
-          </label>
-          <label>Volunteer
-          <input 
-          type="radio" 
-          value="volunteer" 
-          name="roles" 
-          onChange={inputChange} />
-          </label>
-          </SmallerDiv>
-          <LoginButton>
-            <button className="createaccount" disabled={disabled}>Create</button>
-          </LoginButton>
-        </BorderDiv>
-      </CreateDiv>
-    </form>
-  </div>
-)
+              <SmallerDiv>
+                <label>Username:
+                  <input
+                    type="text"
+                    name="username"
+                    value={formValues.username}
+                    onChange={inputChange}
+                  />
+                </label>
+                <label>Email:
+                  <input
+                    type="email"
+                    name="primaryemail"
+                    value={formValues.primaryemail}
+                    onChange={inputChange}
+                  />
+                </label>
+                <label>Password:
+                  <input
+                    type="password"
+                    name="password"
+                    value={formValues.password}
+                    onChange={inputChange}
+                  />
+                </label>
+                <label>Student
+                  <input 
+                    type="radio" 
+                    value="student" 
+                    name="roles" 
+                    onChange={inputChange}
+                  /> 
+                </label>
+                <label>Volunteer
+                  <input 
+                    type="radio" 
+                    value="volunteer" 
+                    name="roles" 
+                    onChange={inputChange} 
+                  />
+                </label>
+              </SmallerDiv>
+              <LoginButton>
+                <button className="createaccount" disabled={disabled}>Create</button>
+              </LoginButton>
+            </BorderDiv>
+          </CreateDiv>
+        </form>
+      </div>
+    )
 }

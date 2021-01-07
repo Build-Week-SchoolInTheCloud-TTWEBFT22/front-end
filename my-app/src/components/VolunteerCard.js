@@ -11,7 +11,6 @@ const CardContainer = styled.div`
   background-color: ${(props) => props.theme.white};
   display: flex;
   flex-direction: column;
-  
 `;
 
 const UsernameTitle = styled.h2`
@@ -44,8 +43,8 @@ function VolunteerCard(props){
               return <div>{task.description}</div> })}
           </CardContainer>
         )
-    }
+}
 
-    export default VolunteerCard;
+export default VolunteerCard;
 
     
